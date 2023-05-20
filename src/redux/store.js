@@ -12,17 +12,29 @@ import {
 } from 'redux-persist';
 
 import { authReducer } from './auth/auth-slice';
+import { tweetsReducer } from './tweets/tweets-slice';
 
-const persistConfig = {
-  key: 'isLogin',
+const authPersistConfig = {
+  key: 'tweets/auth',
   storage,
   whitelist: ['isLogin'],
 };
 
-const authPersistReducer = persistReducer(persistConfig, authReducer);
+const tweetsPersistConfig = {
+  key: 'tweets/data',
+  storage,
+  whitelist: ['filter', 'page'],
+};
+
+const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
+const tweetsPersistedReducer = persistReducer(
+  tweetsPersistConfig,
+  tweetsReducer,
+);
 
 const rootReducer = combineReducers({
-  auth: authPersistReducer,
+  auth: authPersistedReducer,
+  tweets: tweetsPersistedReducer,
 });
 
 export const store = configureStore({

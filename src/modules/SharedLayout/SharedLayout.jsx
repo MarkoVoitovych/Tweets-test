@@ -1,17 +1,28 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Navbar from './Navbar';
+import Header from './Header';
+import Footer from './Footer';
+import Loader from './../../shared/components/Loader';
 
 const SharedLayout = () => {
   return (
-    <>
-      <Navbar />
-      <Suspense fallback={<div>Loading...</div>}>
+    <div
+      style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+    >
+      <Header />
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-      <footer>Footer</footer>
-    </>
+      <Footer />
+    </div>
   );
 };
 

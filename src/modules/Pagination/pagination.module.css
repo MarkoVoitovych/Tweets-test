@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.link {
+    padding: 10px 0;
+    cursor: pointer;
+
+    /* &:hover {
+            color: blue;
+        } */
+}
+
+.selected {
+    color: red;
+}

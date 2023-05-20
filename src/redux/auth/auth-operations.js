@@ -2,29 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import {
   authSignInUser,
-  authRefreshUser,
   authSignOutUser,
 } from '../../shared/services/firebaseAPI';
 
-export const signIn = createAsyncThunk(
+export const signInWithGoogle = createAsyncThunk(
   'auth/google',
   async (_, { rejectWithValue }) => {
     try {
       const data = await authSignInUser();
       return data;
     } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
-
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  (_, { dispatch, rejectWithValue }) => {
-    try {
-      authRefreshUser(dispatch);
-    } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -35,7 +23,7 @@ export const signOut = createAsyncThunk(
     try {
       await authSignOutUser();
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );

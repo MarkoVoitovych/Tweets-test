@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { signIn, signOut } from './auth-operations';
+import { signInWithGoogle, signOut } from './auth-operations';
 
 const initialState = {
   user: {
@@ -8,9 +8,8 @@ const initialState = {
     email: '',
     photoURL: '',
   },
-  isLoading: false,
   isLogin: false,
-  error: null,
+  error: '',
   isFetching: false,
 };
 
@@ -22,6 +21,9 @@ const authSlice = createSlice({
       state.user = payload;
       state.isLogin = true;
     },
+    setError: (state, { payload }) => {
+      state.error = payload;
+    },
     fetchingOn: state => {
       state.isFetching = true;
     },
@@ -31,32 +33,32 @@ const authSlice = createSlice({
   },
   extraReducers: build => {
     build
-      .addCase(signIn.pending, state => {
-        state.error = null;
-        state.isLoading = true;
+      .addCase(signInWithGoogle.pending, state => {
+        state.error = '';
+        state.isFetching = true;
       })
-      .addCase(signIn.fulfilled, (state, { payload }) => {
-        state.error = null;
-        state.isLoading = false;
+      .addCase(signInWithGoogle.fulfilled, (state, { payload }) => {
+        state.error = '';
+        state.isFetching = false;
         state.isLogin = true;
         state.user = payload;
       })
-      .addCase(signIn.rejected, (state, { payload }) => {
-        state.isLoading = false;
+      .addCase(signInWithGoogle.rejected, (state, { payload }) => {
+        state.isFetching = false;
         state.error = payload;
       })
       .addCase(signOut.pending, state => {
-        state.error = null;
-        state.isLoading = true;
+        state.error = '';
+        state.isFetching = true;
       })
       .addCase(signOut.fulfilled, state => {
-        state.error = null;
-        state.isLoading = false;
+        state.error = '';
+        state.isFetching = false;
         state.isLogin = false;
         state.user = initialState.user;
       })
       .addCase(signOut.rejected, state => {
-        state.isLoading = false;
+        state.isFetching = false;
         state.isLogin = false;
         state.user = initialState.user;
       });
@@ -65,4 +67,4 @@ const authSlice = createSlice({
 
 export const authReducer = authSlice.reducer;
 
-export const { setUser, fetchingOn, fetchingOff } = authSlice.actions;
+export const { setUser, fetchingOn, fetchingOff, setError } = authSlice.actions;

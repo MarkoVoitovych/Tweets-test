@@ -1,9 +1,10 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import SharedLayout from '../SharedLayout';
 import PrivateRoute from '../../shared/components/PrivateRoute';
 import PublicRoute from '../../shared/components/PublicRoute';
-import SharedLayout from '../SharedLayout';
+import Loader from './../../shared/components/Loader/Loader';
 
 import useAuth from '../../shared/hooks/useAuth';
 
@@ -15,7 +16,7 @@ const Routing = () => {
   const isLogin = useAuth();
 
   return (
-    <Suspense fallback={<p>....Load page</p>}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route element={<PublicRoute />}>
