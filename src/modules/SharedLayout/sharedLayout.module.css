@@ -1,0 +1,19 @@
+.container {
+    max-width: 1200px;
+    min-width: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 15px;
+
+    @media (min-width: 800px) {
+        width: 780px;
+        padding: 0;
+    }
+
+    @media (min-width: 1200px) {
+        width: 1200px;
+        padding: 0 15px;
+    }
+}

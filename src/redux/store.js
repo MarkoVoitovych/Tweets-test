@@ -23,7 +23,7 @@ const authPersistConfig = {
 const tweetsPersistConfig = {
   key: 'tweets/data',
   storage,
-  whitelist: ['filter', 'page'],
+  whitelist: ['followings'],
 };
 
 const authPersistedReducer = persistReducer(authPersistConfig, authReducer);

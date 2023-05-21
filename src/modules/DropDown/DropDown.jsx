@@ -1,9 +1,5 @@
 import { memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-
-import { selectFilter } from '../../redux/tweets/tweets-selectors';
-import { setFilter } from '../../redux/tweets/tweets-slice';
 
 const options = [
   { value: 'all', label: 'Show all' },
@@ -11,18 +7,12 @@ const options = [
   { value: 'following', label: 'Following' },
 ];
 
-const DropDown = () => {
-  console.log('Dropdown render');
-  const dispatch = useDispatch();
-  const filter = useSelector(selectFilter);
-
-  const handleChange = ({ value }) => dispatch(setFilter(value));
-
+const DropDown = ({ filter, handleDropDownChange }) => {
   return (
     <Select
       // className={}
       defaultValue={filter}
-      onChange={handleChange}
+      onChange={handleDropDownChange}
       options={options}
     />
   );

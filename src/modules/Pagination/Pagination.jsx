@@ -1,13 +1,16 @@
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
+
+import { selectTotalTweets } from './../../redux/tweets/tweets-selectors';
+import { ITEMS_PER_PAGE } from '../../shared/utils/defaults';
 
 import styles from './pagination.module.css';
 
-function Pagination({ totalItems, itemsPerPage, setSearchParams, params }) {
-  const pageCount = Math.ceil(totalItems / itemsPerPage);
+const Pagination = ({ handlePaginationChange }) => {
+  const totalItems = useSelector(selectTotalTweets);
 
-  const handlePageClick = event => {
-    setSearchParams({ ...params, page: event.selected + 1 });
-  };
+  const pageCount = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
   return (
     <>
@@ -15,8 +18,8 @@ function Pagination({ totalItems, itemsPerPage, setSearchParams, params }) {
         className={styles.container}
         breakLabel="..."
         nextLabel=">"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={4}
+        onPageChange={handlePaginationChange}
+        pageRangeDisplayed={3}
         marginPagesDisplayed={2}
         pageCount={pageCount}
         previousLabel="<"
@@ -24,6 +27,6 @@ function Pagination({ totalItems, itemsPerPage, setSearchParams, params }) {
       />
     </>
   );
-}
+};
 
-export default Pagination;
+export default memo(Pagination);

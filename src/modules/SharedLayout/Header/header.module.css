@@ -1,0 +1,70 @@
+.header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 0 10px;
+}
+
+.navigation {
+    display: flex;
+    gap: 10px;
+    align-items: center
+}
+
+.active {
+    color: rgb(36, 188, 36)
+}
+
+.userMenu {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.userImgThumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background: #ebd8ff;
+    box-shadow: 0px 4.39163px 4.39163px rgba(0, 0, 0, 0.06),
+        inset 0px -2.19582px 4.39163px #ae7be3,
+        inset 0px 4.39163px 3.29372px #fbf8ff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.userImg {
+    display: block;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logoutBtn {
+    color: rgb(36, 188, 36);
+    background-color: teal;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid whitesmoke;
+}
+
+.logoutBtn:hover {
+    color: teal;
+    background-color: rgb(36, 188, 36);
+}
+
+.logoutBtnIcon {
+    display: block;
+}

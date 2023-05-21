@@ -3,8 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchAllTweets } from './tweets-operations';
 
 const initialState = {
-  page: 1,
-  filter: 'all',
+  followings: [],
   totalTweets: 0,
   error: '',
   isLoading: false,
@@ -14,12 +13,6 @@ const tweetsSlice = createSlice({
   name: 'tweets',
   initialState,
   reducers: {
-    setFilter: (state, { payload }) => {
-      state.filter = payload;
-    },
-    setPage: (state, { payload }) => {
-      state.page = payload;
-    },
     loadingOn: state => {
       state.isLoading = true;
     },
@@ -47,4 +40,4 @@ const tweetsSlice = createSlice({
 
 export const tweetsReducer = tweetsSlice.reducer;
 
-export const { setFilter, setPage } = tweetsSlice.actions;
+export const { loadingOn, loadingOff } = tweetsSlice.actions;

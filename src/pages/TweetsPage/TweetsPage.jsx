@@ -1,32 +1,56 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import CardList from '../../modules/CardList';
 import DropDown from '../../modules/DropDown';
+import Pagination from './../../modules/Pagination';
 
-import { selectPage, selectFilter } from '../../redux/tweets/tweets-selectors';
 import { getByPage } from './../../shared/services/mockAPI';
+import filterTweets from './../../shared/utils/filterTweets';
+
+import styles from './tweetsPage.module.css';
 
 const TweetsPage = () => {
   const [tweets, setTweets] = useState([]);
-  const page = useSelector(selectPage);
-  const filter = useSelector(selectFilter);
+
+  const [searchParams, setSearchParams] = useSearchParams({
+    page: 1,
+    filter: 'all',
+  });
+  const params = useMemo(
+    () => Object.fromEntries([...searchParams]),
+    [searchParams],
+  );
+  const { page, filter } = params;
+
+  const filteredTweets = filterTweets({ filter, tweets, followings: [] });
 
   useEffect(() => {
     (async () => {
-      const result = await getByPage(page);
-      setTweets([...result]);
+      const result = await getByPage(Number(page));
+      setTweets(result);
     })();
   }, [page]);
 
-  // const filteredTweets = tweets.filter()
+  const handlePaginationChange = useCallback(
+    e => {
+      setSearchParams({ ...params, page: e.selected + 1 });
+    },
+    [params, setSearchParams],
+  );
+
+  const handleDropDownChange = useCallback(
+    e => {
+      setSearchParams({ ...params, filter: e.value });
+    },
+    [params, setSearchParams],
+  );
 
   return (
-    <div style={{ flexGrow: '1' }}>
-      <div>
-        <DropDown />
-      </div>
-      <CardList items={tweets} />
+    <div className={styles.container}>
+      <DropDown filter={filter} handleDropDownChange={handleDropDownChange} />
+      <Pagination handlePaginationChange={handlePaginationChange} />
+      <CardList items={filteredTweets} />
     </div>
   );
 };
