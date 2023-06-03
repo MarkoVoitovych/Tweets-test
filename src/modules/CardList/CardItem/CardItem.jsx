@@ -1,31 +1,54 @@
+import { memo } from 'react';
+
 import logo from '../../../assets/images/CardLogo.svg';
 
 import styles from './card-item.module.css';
 
-const CardItem = ({ id, avatar, followers, tweets }) => {
+const CardItem = ({
+  id,
+  user,
+  avatar,
+  followers,
+  tweets,
+  isFollowing,
+  onClick,
+}) => {
+  console.log(`card ${id} is rendering`);
+  const userData = {
+    id,
+    user,
+    avatar,
+    followers,
+    tweets,
+  };
+
   return (
     <li className={styles.cardWrap}>
       <div className={styles.upperPart}>
-        <img className={styles.cardLogo} src={logo} alt="logo GoIt" />
+        <img className={styles.cardLogo} src={logo} alt="logo GOIT" />
       </div>
       <div className={styles.centerPart}>
         <div className={styles.userImgThumb}>
-          <img className={styles.userImg} src={avatar} alt="UserPhoto" />
+          <img className={styles.userImg} src={avatar} alt={user} />
         </div>
       </div>
       <div className={styles.lowPart}>
         <p className={styles.lowPartText}>
-          {tweets.toLocaleString('en-US') + ' Tweets'}
+          {tweets.toLocaleString('en-US') + ' tweets'}
         </p>
         <p className={styles.lowPartText}>
-          {followers.toLocaleString('en-US') + ' Followers'}
+          {followers.toLocaleString('en-US') + ' followers'}
         </p>
-        <button className={styles.cardBtn} type="button">
-          {'Follow'}
+        <button
+          className={styles.cardBtn}
+          type="button"
+          onClick={() => onClick(userData)}
+        >
+          {isFollowing ? 'following' : 'follow'}
         </button>
       </div>
     </li>
   );
 };
 
-export default CardItem;
+export default memo(CardItem);

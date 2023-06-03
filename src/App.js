@@ -14,16 +14,15 @@ const App = () => {
 
   useEffect(() => {
     if (!isLogin) return;
-    dispatch(fetchingOn());
     try {
+      dispatch(fetchingOn());
       authRefreshUser(dispatch);
       dispatch(fetchAllTweets());
     } catch (error) {
       setError(error.message);
-    }
-    setTimeout(() => {
+    } finally {
       dispatch(fetchingOff());
-    }, 0);
+    }
   }, [dispatch, isLogin]);
 
   return <Routing />;

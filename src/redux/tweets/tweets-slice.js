@@ -19,6 +19,12 @@ const tweetsSlice = createSlice({
     loadingOff: state => {
       state.isLoading = false;
     },
+    setError: (state, { payload }) => {
+      state.error = payload;
+    },
+    toggleFollowings: (state, { payload }) => {
+      state.followings = payload;
+    },
   },
   extraReducers: build => {
     build
@@ -40,4 +46,5 @@ const tweetsSlice = createSlice({
 
 export const tweetsReducer = tweetsSlice.reducer;
 
-export const { loadingOn, loadingOff } = tweetsSlice.actions;
+export const { loadingOn, loadingOff, toggleFollowings, setError } =
+  tweetsSlice.actions;
