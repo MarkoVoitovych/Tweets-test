@@ -9,20 +9,19 @@ import styles from './pagination.module.css';
 
 const Pagination = ({ handlePaginationChange }) => {
   const totalItems = useSelector(selectTotalTweets);
-
   const pageCount = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
   return (
     <>
       <ReactPaginate
-        breakLabel="..."
-        nextLabel=">"
-        onPageChange={handlePaginationChange}
+        pageCount={pageCount}
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
-        pageCount={pageCount}
         previousLabel="<"
-        renderOnZeroPageCount={null}
+        nextLabel=">"
+        breakLabel="..."
+        onPageChange={handlePaginationChange}
+        renderOnZeroPageCount={1}
         containerClassName={styles.container}
         breakLinkClassName={styles.link}
         pageClassName={styles.item}

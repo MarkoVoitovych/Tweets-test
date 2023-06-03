@@ -15,8 +15,13 @@
     align-items: center
 }
 
+.link {
+    width: 100%;
+    border-radius: 4px
+}
+
 .active {
-    color: rgb(36, 188, 36)
+    background-color: #5CD3A8
 }
 
 .userMenu {

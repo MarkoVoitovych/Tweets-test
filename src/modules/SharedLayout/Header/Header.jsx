@@ -11,7 +11,7 @@ import useUserInfo from './../../../shared/hooks/useUserInfo';
 import styles from './header.module.css';
 
 const getClassName = ({ isActive }) => {
-  return isActive ? styles.active : '';
+  return isActive ? `${styles.link} ${styles.active}` : styles.link;
 };
 
 const Navbar = () => {
@@ -32,9 +32,10 @@ const Navbar = () => {
             fontSize: '20px',
             backgroundColor: '#EBD8FF',
             color: '#373737',
-            padding: '1px 10px',
+            padding: '0px ',
+            minWidth: '80px',
             '&:hover': {
-              backgroundColor: '#5CD3A8',
+              backgroundColor: 'rgb(36, 188, 36)',
             },
           }}
         >
@@ -48,9 +49,10 @@ const Navbar = () => {
             fontSize: '20px',
             backgroundColor: '#EBD8FF',
             color: '#373737',
-            padding: '1px 10px',
+            padding: '0px',
+            minWidth: '100px',
             '&:hover': {
-              backgroundColor: '#5CD3A8',
+              backgroundColor: 'rgb(36, 188, 36)',
             },
           }}
         >
