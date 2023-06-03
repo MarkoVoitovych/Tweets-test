@@ -15,7 +15,6 @@ const Pagination = ({ handlePaginationChange }) => {
   return (
     <>
       <ReactPaginate
-        className={styles.container}
         breakLabel="..."
         nextLabel=">"
         onPageChange={handlePaginationChange}
@@ -24,6 +23,11 @@ const Pagination = ({ handlePaginationChange }) => {
         pageCount={pageCount}
         previousLabel="<"
         renderOnZeroPageCount={null}
+        containerClassName={styles.container}
+        breakLinkClassName={styles.link}
+        pageClassName={styles.item}
+        pageLinkClassName={styles.link}
+        activeClassName={styles.selected}
       />
     </>
   );

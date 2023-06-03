@@ -69,8 +69,10 @@ const TweetsPage = () => {
 
   return (
     <div className={styles.container}>
-      <DropDown filter={filter} handleDropDownChange={handleDropDownChange} />
-      <Pagination handlePaginationChange={handlePaginationChange} />
+      <div className={styles.wrapper}>
+        <DropDown filter={filter} handleDropDownChange={handleDropDownChange} />
+        <Pagination handlePaginationChange={handlePaginationChange} />
+      </div>
       {isLoading ? (
         <Loader />
       ) : (

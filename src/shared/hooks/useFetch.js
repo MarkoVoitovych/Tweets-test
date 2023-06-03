@@ -7,7 +7,6 @@ const useFetch = ({ fetchData, dependencies, isFetch }) => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      console.log('fetch posts');
       try {
         setLoading(true);
         const data = await fetchData([...dependencies]);
@@ -22,7 +21,6 @@ const useFetch = ({ fetchData, dependencies, isFetch }) => {
       return;
     }
     fetchItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...dependencies]);
 
   return { items, loading, error, setItems, setLoading, setError };

@@ -13,7 +13,6 @@ const CardItem = ({
   isFollowing,
   onClick,
 }) => {
-  console.log(`card ${id} is rendering`);
   const userData = {
     id,
     user,
@@ -41,6 +40,7 @@ const CardItem = ({
         </p>
         <button
           className={styles.cardBtn}
+          style={{ backgroundColor: isFollowing ? '#5CD3A8' : '#ebd8ff' }}
           type="button"
           onClick={() => onClick(userData)}
         >

@@ -14,6 +14,7 @@ const CardList = ({ items, setItems, followings }) => {
   const onFollowBtnClick = useCallback(
     async userData => {
       const { id } = userData;
+
       if (!followings.includes(id)) {
         setItems(prev =>
           prev.map(item =>
